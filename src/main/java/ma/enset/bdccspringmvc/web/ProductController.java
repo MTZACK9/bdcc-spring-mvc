@@ -1,5 +1,6 @@
 package ma.enset.bdccspringmvc.web;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import ma.enset.bdccspringmvc.entities.Product;
 import ma.enset.bdccspringmvc.repository.ProductRepository;
@@ -61,6 +62,17 @@ public class ProductController {
     @GetMapping("/not-authorized")
     public String notAuthorized() {
         return "not-authorized";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/login";
     }
 
 }
